@@ -163,6 +163,44 @@ const scrollHeader = () => {
 }
 window.addEventListener('scroll', scrollHeader)
 
+var demoButtons;
+
+function start() {
+
+    // Add event "click" to "demo buttons"
+    demoButtons = document.querySelectorAll('.js-modify');
+    for (var i = 0; i < demoButtons.length; i++) {
+        demoButtons[i].addEventListener('click', toggleEffect);
+    }
+
+    // Add event "click" to "save buttons"
+    var saveButtons = document.querySelectorAll('.js-save');
+    for (var i = 0; i < saveButtons.length; i++) {
+        saveButtons[i].addEventListener('click', toggleActive);
+    }
+
+}
+
+// Toggle "effect" classes
+function toggleEffect() {
+    var target = document.querySelector(this.dataset.target);
+    target.dataset.effect = this.dataset.effect;
+
+    for (var i = 0; i < demoButtons.length; i++) {
+        demoButtons[i].classList.remove('active');
+    }
+
+    toggleActive.call(this);
+}
+
+// Toggle "active" class
+function toggleActive() {
+    this.classList.toggle('active');
+}
+
+// Invoke "start ()" function
+window.addEventListener('load', start);
+
 /*=============== SCROLL REVEAL ANIMATION ===============*/
 const sr = ScrollReveal({
     origin: 'top',
@@ -173,7 +211,7 @@ const sr = ScrollReveal({
 })
 
 sr.reveal(`.home__data, .projects__container, .footer__container`)
-sr.reveal(`.home__info div`, {delay: 600, origin: 'bottom', interval: 100})
-sr.reveal(`.skills__content:nth-child(1), .contact__content:nth-child(1)`, {origin: 'left'})
-sr.reveal(`.skills__content:nth-child(2), .contact__content:nth-child(2)`, {origin: 'right'})
-sr.reveal(`.qualification__content, .services__card`, {interval: 100})
+sr.reveal(`.home__info div`, { delay: 600, origin: 'bottom', interval: 100 })
+sr.reveal(`.skills__content:nth-child(1), .contact__content:nth-child(1)`, { origin: 'left' })
+sr.reveal(`.skills__content:nth-child(2), .contact__content:nth-child(2)`, { origin: 'right' })
+sr.reveal(`.qualification__content, .services__card`, { interval: 100 })
